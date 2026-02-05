@@ -9,32 +9,9 @@ interface RecipeDetailsProps {
 }
 
 const RecipeDetails: React.FC<RecipeDetailsProps> = ({ recipe, onBack, aiCommentary }) => {
-  const handleDownloadPDF = () => {
-    const element = document.getElementById('recipe-card');
-    if (!element) return;
-
-    // Configuration for html2pdf
-    const opt = {
-      margin: [10, 10],
-      filename: `${recipe.name.replace(/\s+/g, '_')}_Recipe.pdf`,
-      image: { type: 'jpeg', quality: 0.98 },
-      html2canvas: { 
-        scale: 2, 
-        useCORS: true,
-        letterRendering: true
-      },
-      jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
-    };
-
-    // Use global html2pdf from script tag
-    // @ts-ignore
-    if (window.html2pdf) {
-      // @ts-ignore
-      window.html2pdf().set(opt).from(element).save();
-    } else {
-      // Fallback to print if library fails to load
-      window.print();
-    }
+  const handlePrint = () => {
+    // Uses native browser printing optimized by the CSS in index.html
+    window.print();
   };
 
   const spiceColors: Record<string, string> = {
@@ -60,13 +37,13 @@ const RecipeDetails: React.FC<RecipeDetailsProps> = ({ recipe, onBack, aiComment
           )}
 
           <button 
-            onClick={handleDownloadPDF}
+            onClick={handlePrint}
             className="flex items-center gap-3 px-6 py-3 rounded-full font-bold transition-all shadow-sm active:scale-95 bg-stone-900 text-white hover:bg-black no-print"
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z" />
             </svg>
-            Download PDF
+            Print Recipe
           </button>
         </div>
         
@@ -78,8 +55,8 @@ const RecipeDetails: React.FC<RecipeDetailsProps> = ({ recipe, onBack, aiComment
         </h2>
         
         {aiCommentary && (
-          <div className="mb-6 p-4 bg-orange-50 border-l-4 border-orange-400 rounded-r-xl no-print">
-             <p className="text-orange-900 font-medium italic">Chef says: "{aiCommentary}"</p>
+          <div className="mb-6 p-4 bg-orange-50 border-l-4 border-orange-400 rounded-r-xl">
+             <p className="text-orange-900 font-medium italic">Chef's Note: "{aiCommentary}"</p>
           </div>
         )}
 
@@ -140,15 +117,6 @@ const RecipeDetails: React.FC<RecipeDetailsProps> = ({ recipe, onBack, aiComment
               </ul>
             </div>
           )}
-
-          {recipe.notes && recipe.notes.length > 0 && (
-            <div className="bg-stone-100/50 p-6 rounded-2xl border border-stone-200">
-              <h4 className="text-sm font-bold text-stone-900 mb-3 uppercase tracking-wider">Notes</h4>
-              <ul className="space-y-2 text-xs text-stone-500">
-                {recipe.notes.map((note, i) => <li key={i}>• {note}</li>)}
-              </ul>
-            </div>
-          )}
         </div>
 
         {/* Instructions Column */}
@@ -193,19 +161,6 @@ const RecipeDetails: React.FC<RecipeDetailsProps> = ({ recipe, onBack, aiComment
               </div>
             )}
           </div>
-
-          {recipe.servingSuggestions && recipe.servingSuggestions.length > 0 && (
-            <div className="bg-stone-50 p-6 rounded-3xl border border-stone-100">
-              <h4 className="font-bold text-stone-800 mb-3">Serving Suggestions</h4>
-              <div className="flex flex-wrap gap-2">
-                {recipe.servingSuggestions.map((suggestion, i) => (
-                  <span key={i} className="bg-white px-3 py-1 rounded-full text-xs text-stone-600 border border-stone-200">
-                    {suggestion}
-                  </span>
-                ))}
-              </div>
-            </div>
-          )}
         </div>
       </div>
     </div>

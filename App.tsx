@@ -28,6 +28,7 @@ const App: React.FC = () => {
     setIsLoading(true);
     setIsVisible(false);
     
+    // Slight delay for tactile feel only, no API wait needed
     setTimeout(async () => {
       const recipe = getRecommendedRecipe(preferences);
       setSelectedRecipe(recipe);
@@ -36,7 +37,7 @@ const App: React.FC = () => {
       setIsLoading(false);
       setIsVisible(true);
       window.scrollTo({ top: document.getElementById('result-section')?.offsetTop || 500, behavior: 'smooth' });
-    }, 600);
+    }, 400);
   }, [preferences]);
 
   const renderContent = () => {
@@ -99,7 +100,7 @@ const App: React.FC = () => {
         {view !== 'Home' && (
           <button 
             onClick={() => setView('Home')}
-            className="flex items-center gap-2 text-stone-400 hover:text-stone-600 font-semibold transition-colors"
+            className="flex items-center gap-2 text-stone-400 hover:text-stone-600 font-semibold transition-colors no-print"
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" /></svg>
             Back to Dashboard
@@ -109,7 +110,7 @@ const App: React.FC = () => {
 
       <main>{renderContent()}</main>
 
-      <footer className="mt-24 text-center pb-12 border-t border-stone-100 pt-12">
+      <footer className="mt-24 text-center pb-12 border-t border-stone-100 pt-12 no-print">
         <p className="text-stone-400 text-xs font-bold uppercase tracking-widest mb-4">Indian Cuisine 101 - Smart Companion</p>
         <p className="text-stone-400 text-sm max-w-md mx-auto">This tool is designed to help you decide. Refer to your physical book for ingredients and full instructions.</p>
       </footer>

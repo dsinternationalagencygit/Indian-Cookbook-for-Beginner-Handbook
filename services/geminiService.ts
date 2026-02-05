@@ -1,29 +1,22 @@
 
-import { GoogleGenAI } from "@google/genai";
 import { Recipe } from "../types";
 
-export const getChefCommentary = async (recipe: Recipe): Promise<string> => {
-  if (!process.env.API_KEY) {
-    return "Great choice for a balanced meal!";
-  }
+const CHEF_NOTES = [
+  "This dish is a fantastic way to master basic Indian flavors.",
+  "A perfect choice for a cozy dinner—don't forget to taste for salt at the end!",
+  "This is one of our most popular beginner-friendly recipes!",
+  "Classic, comforting, and guaranteed to impress your family.",
+  "The secret to this dish is letting the onions get properly golden brown.",
+  "A great meal that pairs perfectly with some fresh basmati rice.",
+  "Simple, healthy, and incredibly flavorful. You're going to love this one!",
+  "Don't rush the simmering step; that's where the magic happens.",
+  "This recipe is a masterclass in balancing spices. Take your time!",
+  "A staple in many Indian households for a reason—it's pure comfort food."
+];
 
-  try {
-    // Correct initialization as per guidelines
-    const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
-    // Use gemini-3-flash-preview for basic text tasks
-    const response = await ai.models.generateContent({
-      model: 'gemini-3-flash-preview',
-      contents: `Provide a 1-sentence supportive "chef's note" for a beginner cooking ${recipe.name}. Focus on why it's a great choice or a quick tip. Keep it encouraging and short.`,
-      config: {
-        temperature: 0.7,
-        maxOutputTokens: 100,
-      }
-    });
-    
-    // Use .text getter directly
-    return response.text?.trim() || "This dish is a classic crowd-pleaser!";
-  } catch (error) {
-    console.error("Gemini Commentary Error:", error);
-    return "This dish is a fantastic way to master basic Indian flavors.";
-  }
+export const getChefCommentary = async (recipe: Recipe): Promise<string> => {
+  // Return a random supportive note from our local library
+  // No external API calls needed
+  const randomIndex = Math.floor(Math.random() * CHEF_NOTES.length);
+  return CHEF_NOTES[randomIndex];
 };
