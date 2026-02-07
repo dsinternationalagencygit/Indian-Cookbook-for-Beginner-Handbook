@@ -1115,5 +1115,53 @@ export const HELP_TOPICS = [
       "Adding it too early kills the fresh aromatic oils of the spices.",
       "Think of it like fresh herbs—it's for the finishing aroma."
     ]
+  },
+  {
+    title: "The Secret of Browning Onions",
+    tips: [
+      "Patience is key. For most Indian dishes, onions must be deep golden brown, not just soft.",
+      "Add a pinch of salt to the onions while sautéing to help release moisture and speed up browning.",
+      "If onions are sticking, add 1 tablespoon of water rather than more oil to help them brown evenly."
+    ]
+  },
+  {
+    title: "Burnt Bottom Rescue",
+    tips: [
+      "Stop stirring immediately! If you stir, you'll release the burnt flavor into the whole curry.",
+      "Carefully pour the 'clean' top half of the curry into a new pot.",
+      "Add a splash of cream or a teaspoon of peanut butter to the new pot—this helps mask any lingering smoky notes."
+    ]
+  },
+  {
+    title: "Spice Blooming 101",
+    tips: [
+      "Whole spices (cumin seeds, bay leaves) go into hot oil first until they sizzle/pop.",
+      "Ground spices (turmeric, coriander) should be added to the moist onion/tomato base.",
+      "Never drop dry ground spices into plain hot oil; they will burn in seconds and taste bitter."
+    ]
+  },
+  {
+    title: "Dough Handling (Roti/Naan)",
+    tips: [
+      "For soft flatbreads, use warm water and yogurt to knead the dough.",
+      "Always let the dough rest for at least 15-20 minutes before rolling.",
+      "Cover rolled rotis with a clean kitchen towel immediately after cooking to trap steam and keep them soft."
+    ]
+  },
+  {
+    title: "Ginger-Garlic Paste Tips",
+    tips: [
+      "Sauté the paste for 30-60 seconds until the 'raw' smell disappears.",
+      "If it smells like raw garlic in your finished dish, you didn't sauté the paste long enough at the start.",
+      "Don't let it turn dark brown or black, or it will become bitter."
+    ]
+  },
+  {
+    title: "Dish is too Salty?",
+    tips: [
+      "Add a whole peeled potato to the simmering curry; it will absorb some of the salt. Remove before serving.",
+      "Add a teaspoon of sugar and a squeeze of lemon juice to balance the saltiness.",
+      "Stir in some extra cream, yogurt, or unsalted tomato puree."
+    ]
   }
 ];
